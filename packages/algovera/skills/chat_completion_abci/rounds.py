@@ -371,7 +371,7 @@ class ChatCompletionAbciApp(AbciApp[Event]):
             Event.ROUND_TIMEOUT: SynchronizeEmbeddingsRound,
         },
         ChatRound: {
-            Event.DONE: SynchronizeEmbeddingsRound,
+            Event.DONE: FinishedChatCompletionRound,
             Event.ERROR: SynchronizeEmbeddingsRound,
         },
         FinishedChatCompletionRound: {},

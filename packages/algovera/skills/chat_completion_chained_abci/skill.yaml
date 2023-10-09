@@ -6,13 +6,13 @@ description: The chained abci for the impact_evaluator skill.
 license: Apache-2.0
 aea_version: '>=1.0.0, <2.0.0'
 fingerprint:
-  __init__.py: bafybeigehts7z7h7wch2llue3zkqlzimcga7xd632jd77xmogjccrpm7si
-  behaviours.py: bafybeia2tbao4ugl6ezn5gq5ozyknwxd2gsyl3o3737mstmqzimrz4tcb4
-  composition.py: bafybeiduduotkwys4c73shy6cnydvnxixn7vsq4zxcnux5ybtnbm6twrim
-  dialogues.py: bafybeid6xs6sgui2yj6tuzg3vw2mv44ivotw225b5kbyj5ijxtg363q7bm
-  fsm_specification.yaml: bafybeidipexskhjklqxr2na2uqtypqp7yrlfczymitwpujfkiztieku6ju
-  handlers.py: bafybeif4jvpscycxqiaelewlmocwmr64qcakbkyfsi2citcxb6w677dwea
-  models.py: bafybeidesmccheqcexinu4yebqffuzpu6ivksuuafyeumfntrquz46xvka
+  __init__.py: bafybeidazako4gkxjrtzd5bpgeesnluju46m2b7zkq5r4xg4fzplxbbllq
+  behaviours.py: bafybeigqyssrpglu5dw4ezrcysgjlsyn6owlpyivkvzjbcgfx6rpkfiui4
+  composition.py: bafybeiacavqhu3nsmpco6annyqdx64w7jrd7sdffyf6agehrvxhhurwhvq
+  dialogues.py: bafybeib7qczxdeibdwpx5lhkvtjtm6usahhn7hzxv7arrii6uniglxjfei
+  fsm_specification.yaml: bafybeig56yeekqaobkn3hlk5cqzgikhyrskk37cw7v5inthe3tjr7qjz2m
+  handlers.py: bafybeidrpoc5et4hzukqniudydawiv3x335madl65gh3g7rbv6a7yqgvgu
+  models.py: bafybeichd5wbqcon6m24hywrapp73at6aqbftlm7z3tp7kxpqh66tpxzgy
 fingerprint_ignore_patterns: []
 connections: []
 contracts: []
@@ -23,7 +23,7 @@ skills:
 - valory/reset_pause_abci:0.1.0:bafybeifoihgilpfr76hc5skzspm6qehkwivx7ld2cy3veipcsi4gr2c7na
 - valory/termination_abci:0.1.0:bafybeigcsls72uosoui2y5ppmnvsljjhnxakkeh3fdohklcg66aqq4g7xu
 - valory/transaction_settlement_abci:0.1.0:bafybeiglsnh2hvfau5gab7requh34k4sbqwbjvrhhqjpes4hakcwq46cpi
-- algovera/chat_completion_abci:0.1.0:bafybeibtngbfx45v2vhuhwbpwmoe4hfnbsycraim6dypj5oktxswfve7yu
+- algovera/chat_completion_abci:0.1.0:bafybeig3ggqbbyyolvt3vxv2jtqwryd6iydcg4gkbb57rcmdib54rvjd3m
 behaviours:
   main:
     args: {}
