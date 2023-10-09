@@ -27,7 +27,6 @@ from typing import Dict, FrozenSet, List, Optional, Set, Tuple, Type, cast
 from packages.algovera.skills.chat_completion_abci.payloads import (
     ChatPayload,
     EmbeddingPayload,
-    RegistrationPayload,
     SynchronizeEmbeddingsPayload,
     SynchronizeRequestsPayload,
 )
@@ -178,23 +177,6 @@ class EmbeddingRound(CollectionRound, ChatCompletionABCIAbstractRound):
                     synchronized_data_class=SynchronizedData,
                 )
                 return synchronized_data, Event.DONE
-
-
-class RegistrationRound(CollectSameUntilAllRound, ChatCompletionABCIAbstractRound):
-    """RegistrationRound"""
-
-    payload_class = RegistrationPayload
-
-    def end_block(self) -> Optional[Tuple[BaseSynchronizedData, Event]]:
-        """Process the end of the block."""
-
-        if self.collection_threshold_reached:
-            synchronized_data = self.synchronized_data.update(
-                participants=tuple(sorted(self.collection)),
-                synchronized_data_class=SynchronizedData,
-            )
-            return synchronized_data, Event.DONE
-        return None
 
 
 def remove_duplicates(lst):
@@ -364,13 +346,16 @@ class SynchronizeRequestsRound(CollectionRound, ChatCompletionABCIAbstractRound)
                 return synchronized_data, Event.NO_REQUEST
 
 
+class FinishedChatCompletionRound(DegenerateRound, ABC):
+    """FinishedChatCompletionRound"""
+
+
 class ChatCompletionAbciApp(AbciApp[Event]):
     """ChatCompletionAbciApp"""
 
-    initial_round_cls: AppState = RegistrationRound
-    initial_states: Set[AppState] = {RegistrationRound}
+    initial_round_cls: AppState = SynchronizeEmbeddingsRound
+    initial_states: Set[AppState] = {SynchronizeEmbeddingsRound}
     transition_function: AbciAppTransitionFunction = {
-        RegistrationRound: {Event.DONE: SynchronizeEmbeddingsRound},
         SynchronizeEmbeddingsRound: {
             Event.EMBEDDING: EmbeddingRound,
             Event.NO_REQUEST: SynchronizeRequestsRound,
@@ -389,21 +374,21 @@ class ChatCompletionAbciApp(AbciApp[Event]):
             Event.DONE: SynchronizeEmbeddingsRound,
             Event.ERROR: SynchronizeEmbeddingsRound,
         },
+        FinishedChatCompletionRound: {},
     }
-    final_states: Set[AppState] = set()
+    final_states: Set[AppState] = {FinishedChatCompletionRound}
     event_to_timeout: EventToTimeout = {}
     cross_period_persisted_keys: FrozenSet[str] = frozenset()
     db_pre_conditions: Dict[AppState, Set[str]] = {
-        RegistrationRound: set(),
         SynchronizeEmbeddingsRound: set(),
         EmbeddingRound: set(),
         SynchronizeRequestsRound: set(),
         ChatRound: set(),
     }
     db_post_conditions: Dict[AppState, Set[str]] = {
-        RegistrationRound: set(),
         SynchronizeEmbeddingsRound: set(),
         EmbeddingRound: set(),
         SynchronizeRequestsRound: set(),
         ChatRound: set(),
+        FinishedChatCompletionRound: set(),
     }
