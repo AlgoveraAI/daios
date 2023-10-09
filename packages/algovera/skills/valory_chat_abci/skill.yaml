@@ -10,6 +10,7 @@ fingerprint:
   __init__.py: bafybeicxkfzpty7ulppggno5q7druhpb3qz467sf4byxb5bro5o4eoiz2a
   behaviours.py: bafybeih2vofmow62kxqa2zed6o32qgj6dmghzuu23tdvbv37xgjoyzg37q
   dialogues.py: bafybeidbq2qgz7nocxfivxoh5eeu4axf3qfhur4tbektfshxnml5y4uq4i
+  fsm_specification.yaml: bafybeicphurmeww7qcuvbygoztvbl7ksujiia2wwagkmszbnu5mqh5xslm
   fsm_specs_valory_chat.yaml: bafybeibttf5ssb6gyjewlm5pkqywcsfmolrqli32pvozdocns4lylmcmyq
   handlers.py: bafybeiepr5bjkhjv7dx2qiciknsygwsvwtpyai524vu2ldsyzvo5rynbie
   models.py: bafybeiahascxnkeubiivtgogkc5ef5g3txj36dt47ek4t2i4l2edjquq3u
