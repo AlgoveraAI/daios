@@ -1,0 +1,1 @@
+{"name":"service/algovera/valory_chat_mas:0.1.0","description":"A service that uses valory_chat_agent & valory_chat_abci to do RAG-based chat.","code_uri":"ipfs://bafybeiagyzf75y4n2xey4dtip2kqtzv7wusg7q2yajhzo77yiadbzkatpa","image":"ipfs://bafybeifomqdn4ql3tilcxvnutx4xef3xsludmoale3mkpkj5i3eqeyhpv4","attributes":[{"trait_type":"version","value":"0.1.0"}]}
