@@ -22,14 +22,14 @@
 from packages.algovera.skills.chat_completion_abci.handlers import (
     ChatCompletionHandler as BaseChatCompletionHandler,
 )
+from packages.algovera.skills.chat_completion_abci.handlers import (
+    HttpHandler as BaseHttpHandler,
+)
 from packages.valory.skills.abstract_round_abci.handlers import (
     ABCIRoundHandler as BaseABCIRoundHandler,
 )
 from packages.valory.skills.abstract_round_abci.handlers import (
     ContractApiHandler as BaseContractApiHandler,
-)
-from packages.valory.skills.abstract_round_abci.handlers import (
-    HttpHandler as BaseHttpHandler,
 )
 from packages.valory.skills.abstract_round_abci.handlers import (
     IpfsHandler as BaseIpfsHandler,
