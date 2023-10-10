@@ -1,0 +1,30 @@
+alphabet_in:
+- CHAT
+- DONE
+- EMBEDDING
+- ERROR
+- NO_REQUEST
+- ROUND_TIMEOUT
+default_start_state: SynchronizeEmbeddingsRound
+final_states:
+- FinishedValoryChatRound
+label: ValoryChatAbciApp
+start_states:
+- SynchronizeEmbeddingsRound
+states:
+- ChatRound
+- EmbeddingRound
+- FinishedValoryChatRound
+- SynchronizeEmbeddingsRound
+- SynchronizeRequestsRound
+transition_func:
+    (ChatRound, DONE): FinishedValoryChatRound
+    (ChatRound, ERROR): SynchronizeEmbeddingsRound
+    (EmbeddingRound, DONE): SynchronizeRequestsRound
+    (EmbeddingRound, ERROR): SynchronizeRequestsRound
+    (SynchronizeEmbeddingsRound, EMBEDDING): EmbeddingRound
+    (SynchronizeEmbeddingsRound, NO_REQUEST): SynchronizeRequestsRound
+    (SynchronizeEmbeddingsRound, ROUND_TIMEOUT): SynchronizeRequestsRound
+    (SynchronizeRequestsRound, CHAT): ChatRound
+    (SynchronizeRequestsRound, NO_REQUEST): SynchronizeEmbeddingsRound
+    (SynchronizeRequestsRound, ROUND_TIMEOUT): SynchronizeEmbeddingsRound

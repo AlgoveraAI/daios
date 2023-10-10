@@ -8,7 +8,7 @@ aea_version: '>=1.0.0, <2.0.0'
 fingerprint: {}
 fingerprint_ignore_patterns: []
 connections:
-- algovera/chat_completion:0.1.0:bafybeia46nkwsxbknc4ykucbc433zzkgf2cm3zbgxfmvnco2wzwretcqoy
+- algovera/chat_completion:0.1.0:bafybeigvndz5rb2zirkhrx67uzmfubcatgqdt6wovr6ygnoymmjuua2sea
 - fetchai/http_server:0.22.0:bafybeihp5umafxzx45aad5pj7s3343se2wjkgnbirt4pybrape22swm6de
 - valory/abci:0.1.0:bafybeif7rsxcw72mbzwcui3ozfaay5qnqorj5c52zedpqf56zczsxox3xe
 - valory/http_client:0.23.0:bafybeieoeuy4brzimtnubmokwirhrx27ezls6cdnl5qik4rkykfle3nn2y
@@ -28,9 +28,14 @@ protocols:
 - valory/ledger_api:1.0.0:bafybeigsvceac33asd6ecbqev34meyyjwu3rangenv6xp5rkxyz4krvcby
 - valory/tendermint:0.1.0:bafybeidjqmwvgi4rqgp65tbkhmi45fwn2odr5ecezw6q47hwitsgyw4jpa
 skills:
-- algovera/chat_completion_abci:0.1.0:bafybeiahphyshexbkd6wm7kwc2eb7wvtjmrzqdkeu6in3op2nkkb2754wq
 - valory/abstract_abci:0.1.0:bafybeibpe6ohnm4ritfnghdtpczdqlrcwufrxr5g75inkkgazeqhonyclu
 - valory/abstract_round_abci:0.1.0:bafybeif3cqkks5qx3lqi6nwwhebcirhazt2vidw3sueeqsyxvjeszjt3om
+- algovera/chat_completion_abci:0.1.0:bafybeigr4usvrmbaplkg6ecg6tpdonef5va7ax3tl6vtumweyhq6jeoney
+- algovera/chat_completion_chained_abci:0.1.0:bafybeibwqeqlqjugv723yxjnfaqmuexnxmvzqykqcwakhgoz72vjphvo6a
+- valory/registration_abci:0.1.0:bafybeifzdrmgiwx66cvxqg63uct6ul4hty6cg33i2hhwi7kkyljntfdopy
+- valory/reset_pause_abci:0.1.0:bafybeifoihgilpfr76hc5skzspm6qehkwivx7ld2cy3veipcsi4gr2c7na
+- valory/termination_abci:0.1.0:bafybeigcsls72uosoui2y5ppmnvsljjhnxakkeh3fdohklcg66aqq4g7xu
+- valory/transaction_settlement_abci:0.1.0:bafybeiglsnh2hvfau5gab7requh34k4sbqwbjvrhhqjpes4hakcwq46cpi
 default_ledger: ethereum
 required_ledgers:
 - ethereum
@@ -62,7 +67,7 @@ logging_config:
 dependencies: {}
 default_connection: null
 ---
-public_id: algovera/chat_completion_abci:0.1.0
+public_id: algovera/chat_completion_chained_abci:0.1.0
 type: skill
 models:
   benchmark_tool:
@@ -70,21 +75,61 @@ models:
       log_dir: ${str:/benchmarks}
   params:
     args:
-      service_registry_address: ${str:null}
-      share_tm_config_on_startup: ${bool:false}
+      cleanup_history_depth: 1
+      cleanup_history_depth_current: null
+      drand_public_key: 868f005eb8e6e4ca0a47c8a77ceaa5309a47978a7c71bc5cce96366b5d7a569937c529eeda66c7293784a9402801af31
+      genesis_config:
+        genesis_time: '2022-09-26T00:00:00.000000000Z'
+        chain_id: chain-c4daS1
+        consensus_params:
+          block:
+            max_bytes: '22020096'
+            max_gas: '-1'
+            time_iota_ms: '1000'
+          evidence:
+            max_age_num_blocks: '100000'
+            max_age_duration: '172800000000000'
+            max_bytes: '1048576'
+          validator:
+            pub_key_types:
+            - ed25519
+          version: {}
+        voting_power: '10'
+      keeper_timeout: 30.0
+      max_attempts: 10
+      max_healthcheck: 120
+      keeper_allowed_retries: 3
+      reset_pause_duration: ${int:300}
       on_chain_service_id: ${int:null}
+      reset_tendermint_after: ${int:2}
+      retry_attempts: 400
+      retry_timeout: 3
+      request_retry_delay: 1.0
+      request_timeout: 10.0
+      round_timeout_seconds: 30.0
+      service_id: valory_chat_mas
+      service_registry_address: ${str:null}
       setup:
         all_participants: ${list:[]}
-        safe_contract_address: ${str:'0x0000000000000000000000000000000000000000'}
+        safe_contract_address: ${str:0x0000000000000000000000000000000000000000}
         consensus_threshold: ${int:null}
-      tendermint_url: ${str:http://localhost:26657}
+      share_tm_config_on_startup: ${bool:false}
+      sleep_time: 1
+      tendermint_check_sleep_delay: 3
       tendermint_com_url: ${str:http://localhost:8080}
+      tendermint_max_retries: 5
+      tendermint_url: ${str:http://localhost:26657}
       tendermint_p2p_url: ${str:localhost:26656}
+      tx_timeout: 10.0
+      use_termination: ${bool:false}
+      validate_timeout: 1205
+      finalize_timeout: 60.0
+      service_endpoint_base: ${str:http://localhost:8000}
 ---
 public_id: valory/abci:0.1.0
 type: connection
 config:
-  target_skill_id: algovera/chat_completion_abci:0.1.0
+  target_skill_id: algovera/chat_completion_chained_abci:0.1.0
   host: ${str:localhost}
   port: ${int:26658}
   use_tendermint: ${bool:false}
@@ -105,8 +150,6 @@ config:
   nodes:
   - uri: ${str:acn.staging.autonolas.tech:9005}
     public_key: ${str:02d3a830c9d6ea1ae91936951430dee11f4662f33118b02190693be835359a9d77}
-  - uri: ${str:acn.staging.autonolas.tech:9006}
-    public_key: ${str:02e741c62d706e1dcf6986bf37fa74b98681bc32669623ac9ee6ff72488d4f59e8}
 cert_requests:
 - identifier: acn
   ledger_id: ethereum
@@ -114,15 +157,7 @@ cert_requests:
   not_after: '2023-01-01'
   not_before: '2022-01-01'
   public_key: ${str:02d3a830c9d6ea1ae91936951430dee11f4662f33118b02190693be835359a9d77}
-  save_path: .certs/acn_cosmos_9005.txt
-- identifier: acn
-  ledger_id: ethereum
-  message_format: '{public_key}'
-  not_after: '2023-01-01'
-  not_before: '2022-01-01'
-  public_key: ${str:02e741c62d706e1dcf6986bf37fa74b98681bc32669623ac9ee6ff72488d4f59e8}
-  save_path: .certs/acn_cosmos_9006.txt
-is_abstract: true
+  save_path: .certs/acn_cosmos_11000.txt
 ---
 public_id: algovera/chat_completion:0.1.0
 type: connection
@@ -133,4 +168,4 @@ public_id: fetchai/http_server:0.22.0:bafybeicblltx7ha3ulthg7bzfccuqqyjmihhrvfez
 type: connection
 config:
   host: ${str:0.0.0.0}
-  target_skill_id: algovera/chat_completion_abci:0.1.0
+  target_skill_id: algovera/chat_completion_chained_abci:0.1.0
