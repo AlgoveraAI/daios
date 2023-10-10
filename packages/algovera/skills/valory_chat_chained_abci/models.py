@@ -44,7 +44,7 @@ Requests = BaseRequests
 BenchmarkTool = BaseBenchmarkTool
 
 MARGIN = 5
-MULTIPLIER = 2
+MULTIPLIER = 5
 
 
 class RandomnessApi(ApiSpecs):

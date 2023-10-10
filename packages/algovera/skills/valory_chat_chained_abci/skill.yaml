@@ -12,7 +12,7 @@ fingerprint:
   dialogues.py: bafybeid6xs6sgui2yj6tuzg3vw2mv44ivotw225b5kbyj5ijxtg363q7bm
   fsm_specification.yaml: bafybeidipexskhjklqxr2na2uqtypqp7yrlfczymitwpujfkiztieku6ju
   handlers.py: bafybeih463nfkzz4bg6e7uresmtczu4zljognx4o3ubtqddt3y3pnofwdq
-  models.py: bafybeidesmccheqcexinu4yebqffuzpu6ivksuuafyeumfntrquz46xvka
+  models.py: bafybeiehby3jbsegdr2rgymzr2ylthag7kg4vdrwqonsfvbl6mjqr64lma
 fingerprint_ignore_patterns: []
 connections: []
 contracts: []
@@ -23,7 +23,7 @@ skills:
 - valory/reset_pause_abci:0.1.0:bafybeifoihgilpfr76hc5skzspm6qehkwivx7ld2cy3veipcsi4gr2c7na
 - valory/termination_abci:0.1.0:bafybeigcsls72uosoui2y5ppmnvsljjhnxakkeh3fdohklcg66aqq4g7xu
 - valory/transaction_settlement_abci:0.1.0:bafybeiglsnh2hvfau5gab7requh34k4sbqwbjvrhhqjpes4hakcwq46cpi
-- algovera/valory_chat_abci:0.1.0:bafybeieuq6fexzxv6fl6vlej6sy6khekei2tnz3xgbknkgu7oty3flhisy
+- algovera/valory_chat_abci:0.1.0:bafybeievqab2xeiejlw7zmo7t6skofetvbxtscvvhwynzu6l3mq5m2mcgm
 behaviours:
   main:
     args: {}

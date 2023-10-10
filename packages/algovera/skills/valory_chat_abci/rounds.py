@@ -374,7 +374,9 @@ class ValoryChatAbciApp(AbciApp[Event]):
     }
     final_states: Set[AppState] = {FinishedValoryChatRound}
     event_to_timeout: EventToTimeout = {}
-    cross_period_persisted_keys: FrozenSet[str] = frozenset()
+    cross_period_persisted_keys: FrozenSet[str] = frozenset(
+        ["embedding", "chats", "chat_histories"]
+    )
     db_pre_conditions: Dict[AppState, Set[str]] = {
         SynchronizeEmbeddingsRound: set(),
         EmbeddingRound: set(),
