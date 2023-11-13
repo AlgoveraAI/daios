@@ -1,0 +1,13 @@
+token_id-"component_id"
+140-"protocol/algovera/chat_completion/0.1.0"
+141-"connection/algovera/chat_completion/0.1.0"
+142-"skill/algovera/chat_completion_abci/0.1.0"
+143-"skill/algovera/valory_chat_abci/0.1.0"
+---
+token_id-"agent_id"
+20-"agent/algovera/chat_completion_agent/0.1.0"
+21-"agent/algovera/valory_chat_agent/0.1.0"
+---
+token_id-"service_id"
+16-"service/algovera/chat_completion_mas/0.1.0"
+17-"service/algovera/valory_chat_mas/0.1.0"
